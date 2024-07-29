@@ -18,7 +18,7 @@ function App() {
     }
   }, [])
   
-
+  
   const saveToLS = (params) => {
     localStorage.setItem("todos", JSON.stringify(todos))
   }
@@ -40,15 +40,15 @@ function App() {
   const handleDelete= (e, id)=>{  
     let newTodos = todos.filter(item=>{
       return item.id!==id
-    }); 
+    });
+    localStorage.setItem("todos", JSON.stringify(newTodos)) 
     setTodos(newTodos) 
-    saveToLS()
   }
 
   const handleAdd= ()=>{
     setTodos([...todos, {id: uuidv4(), todo, isCompleted: false}])
+    localStorage.setItem("todos", JSON.stringify([...todos, {id: uuidv4(), todo, isCompleted: false}]))
     setTodo("") 
-    saveToLS()
   }
   
   const handleChange= (e)=>{ 
